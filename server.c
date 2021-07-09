@@ -6,7 +6,7 @@
 /*   By: sgoffaux <sgoffaux@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 11:14:21 by sgoffaux          #+#    #+#             */
-/*   Updated: 2021/07/09 15:35:22 by sgoffaux         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:49:54 by sgoffaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_message	g_message;
 
-void low_bit(int sig, siginfo_t *info, void *context)
+void	low_bit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
 	(void)info;
@@ -29,7 +29,7 @@ void low_bit(int sig, siginfo_t *info, void *context)
 	}
 }
 
-void high_bit(int sig, siginfo_t *info, void *context)
+void	high_bit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
 	(void)info;
@@ -44,17 +44,7 @@ void high_bit(int sig, siginfo_t *info, void *context)
 	}
 }
 
-// static void	ft_handler(void)
-// {
-// 	int	printed;
-
-// 	printed = 0;
-// 	while (1)
-// 	{
-// 	}
-// }
-
-int main(void)
+int	main(void)
 {
 	struct sigaction	high;
 	struct sigaction	low;
@@ -73,5 +63,7 @@ int main(void)
 	g_message.counter = 0;
 	g_message.tmp_char = 0;
 	printf("pid: %d\n", getpid());
-	while (1) {}
+	while (1)
+	{
+	}
 }
