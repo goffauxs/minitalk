@@ -6,7 +6,7 @@
 /*   By: sgoffaux <sgoffaux@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 11:14:21 by sgoffaux          #+#    #+#             */
-/*   Updated: 2021/07/09 15:49:54 by sgoffaux         ###   ########.fr       */
+/*   Updated: 2021/07/12 12:11:25 by sgoffaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,32 @@
 
 t_message	g_message;
 
-void	low_bit(int sig, siginfo_t *info, void *context)
+static void	ft_print_pid(void)
+{
+	char	*pid;
+
+	pid = ft_itoa((int)getpid());
+	ft_putstr_fd("pid: ", STDOUT_FILENO);
+	ft_putendl_fd(pid, STDOUT_FILENO);
+}
+
+static void	low_bit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
-	(void)info;
 	(void)context;
 	g_message.tmp_char <<= 1;
 	g_message.counter++;
 	if (g_message.counter % 8 == 0 && g_message.counter != 0)
 	{
-		write(STDOUT_FILENO, &g_message.tmp_char, 1);
+		if (g_message.tmp_char == '\0')
+			kill(info->si_pid, SIGUSR1);
+		else
+			write(STDOUT_FILENO, &g_message.tmp_char, 1);
 		g_message.tmp_char = 0;
 	}
 }
 
-void	high_bit(int sig, siginfo_t *info, void *context)
+static void	high_bit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
 	(void)info;
@@ -62,7 +73,7 @@ int	main(void)
 		write(STDERR_FILENO, "signal error\n", 13);
 	g_message.counter = 0;
 	g_message.tmp_char = 0;
-	printf("pid: %d\n", getpid());
+	ft_print_pid();
 	while (1)
 	{
 	}
