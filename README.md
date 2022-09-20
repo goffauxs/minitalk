@@ -7,4 +7,4 @@ This project consists of a client and server that communicate with eachother usi
 The messsages are encoded in 8bit characters where `SIGUSR1` represents a `1` and `SIGUSR2` represents a `0`
 
 ## Example
-[![asciicast](https://asciinema.org/a/NvkMDWem8KYhbdT7WqtMgfQMf.svg)](https://asciinema.org/a/NvkMDWem8KYhbdT7WqtMgfQMf?theme=tango&speed=1.5)
+[![asciicast](https://asciinema.org/a/7BKsGt58Sjsy05TCx2SvbvDJd.svg)](https://asciinema.org/a/7BKsGt58Sjsy05TCx2SvbvDJd)
