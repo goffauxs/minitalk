@@ -6,7 +6,7 @@
 /*   By: sgoffaux <sgoffaux@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 11:14:21 by sgoffaux          #+#    #+#             */
-/*   Updated: 2021/07/12 12:11:25 by sgoffaux         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:34:25 by sgoffaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ static void	low_bit(int sig, siginfo_t *info, void *context)
 	if (g_message.counter % 8 == 0 && g_message.counter != 0)
 	{
 		if (g_message.tmp_char == '\0')
+		{
+			write(STDOUT_FILENO, "\n", 1);
 			kill(info->si_pid, SIGUSR1);
+		}
 		else
 			write(STDOUT_FILENO, &g_message.tmp_char, 1);
 		g_message.tmp_char = 0;
